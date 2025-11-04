@@ -1,4 +1,4 @@
-// SVG Icons для кожної активності
+
 const icons = {
     'Work': '<svg width="79" height="79" xmlns="http://www.w3.org/2000/svg"><path d="m18.687 10.43 15.464 30.906c.31.682.743 1.322 1.3 1.88.558.557 1.198.99 1.714 1.217L68.237 59.98 52.484 75.732a8.025 8.025 0 0 1-11.355 0L2.153 36.756a8.025 8.025 0 0 1 0-11.354L18.687 10.43Zm19.345-7.99 10.839 10.838q-.049.049-.098.098c-1.177 1.177-2.255 2.255-3.234 3.234L29.975 3.046l5.73-5.73a8.025 8.025 0 0 1 11.355 0L85.035 35.29a8.025 8.025 0 0 1 0 11.355L56.973 74.707a8.025 8.025 0 0 1-11.355 0L30.154 59.244Z" fill="#FFF" fill-rule="evenodd"/></svg>',
     'Play': '<svg width="76" height="77" xmlns="http://www.w3.org/2000/svg"><path d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z" fill="#3F9CBB" fill-rule="evenodd"/></svg>',
@@ -8,17 +8,14 @@ const icons = {
     'Self Care': '<svg width="67" height="67" xmlns="http://www.w3.org/2000/svg"><path d="M.918 50.848c.114 1.723.232 3.5.346 5.336l.003.038.448 6.038c.06.81.412 1.536.951 2.075.54.54 1.266.892 2.075.952l6.038.447.038.003c12.086.755 21.237 1.231 28.95.484 9.007-.873 15.369-3.445 20.02-8.096 8.413-8.413 8.398-21.609-.034-30.041-3.79-3.79-8.959-6.11-14.31-6.526-.415-5.352-2.736-10.52-6.526-14.31C30.484-1.185 17.288-1.2 8.875 7.214-1.295 17.384-.415 30.697.918 50.848ZM21.36 27.122l6.172 6.173 6.16-6.159 6.16 6.159 6.173-6.173-6.158-6.158 6.173-6.173-6.158-6.158-6.173 6.173-6.158-6.158-6.173 6.158 6.173 6.173-6.158 6.158Z" fill="#E6A532" fill-rule="evenodd"/></svg>'
 };
 
-// Глобальна змінна для поточного timeframe
 let currentTimeframe = 'weekly';
 
-// Підписи для попереднього періоду
 const timeframeLabels = {
     'daily': 'Yesterday',
     'weekly': 'Last Week',
     'monthly': 'Last Month'
 };
 
-// Функція для завантаження даних з data.json
 async function loadData() {
     try {
         const response = await fetch('data.json');
@@ -34,7 +31,6 @@ async function loadData() {
     }
 }
 
-// Дані за замовчуванням (якщо data.json не знайдено)
 function getDefaultData() {
     return [
         {
@@ -88,21 +84,20 @@ function getDefaultData() {
     ];
 }
 
-// Функція для рендерингу карток активностей
 function renderActivities(data) {
     const container = document.getElementById('activities-container');
     container.innerHTML = '';
 
     data.forEach(activity => {
-        // Перетворюємо назву в клас CSS (Work -> work, Self Care -> self-care)
+        // Перетворюємо назву в клас CSS (Work - work, Self Care - self-care)
         const className = activity.title.toLowerCase().replace(' ', '-');
         
-        // Отримуємо дані для поточного timeframe
+        
         const timeframe = activity.timeframes[currentTimeframe];
         const currentHours = timeframe.current;
         const previousHours = timeframe.previous;
 
-        // Створюємо картку активності
+       
         const card = document.createElement('div');
         card.className = 'activity-card';
         card.innerHTML = `
@@ -127,12 +122,12 @@ function renderActivities(data) {
     });
 }
 
-// Функція ініціалізації
+
 async function init() {
     // Завантажуємо дані
     const data = await loadData();
     
-    // Рендеримо початковий стан
+    
     renderActivities(data);
     
     // Додаємо обробники подій для кнопок timeframe
