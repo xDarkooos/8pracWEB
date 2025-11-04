@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #0d1323;
+    color: white;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1110px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Profile Card */
+.profile-card {
+    background-color: #1c204b;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-row: span 2;
+}
+
+.profile-info {
+    background-color: #5747ea;
+    padding: 35px 30px;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 40px;
+    object-fit: cover;
+}
+
+.report-label {
+    color: #bdc1ff;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.profile-name {
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+/* Timeframe Selector */
+.timeframe-selector {
+    padding: 25px 30px;
+}
+
+.timeframe-btn {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #7078c9;
+    font-size: 18px;
+    text-align: left;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-family: inherit;
+}
+
+.timeframe-btn:hover,
+.timeframe-btn.active {
+    color: white;
+}
+
+/* Activity Cards */
+#activities-container {
+    display: contents;
+}
+
+.activity-card {
+    background-color: #1c204b;
+    border-radius: 15px;
+    overflow: visible;
+    position: relative;
+    cursor: pointer;
+}
+
+.activity-bg {
+    height: 45px;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-icon {
+    position: absolute;
+    right: 17px;
+    top: -8px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+}
+
+.activity-content {
+    background-color: #1c204b;
+    border-radius: 15px;
+    padding: 28px 30px;
+    position: relative;
+    transition: background-color 0.3s;
+    margin-top: -10px;
+}
+
+.activity-card:hover .activity-content {
+    background-color: #33397a;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.menu-dots {
+    color: #bdc1ff;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.menu-dots:hover {
+    color: white;
+}
+
+.current-time {
+    font-size: 56px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.previous-time {
+    color: #bdc1ff;
+    font-size: 15px;
+}
+
+/* Activity Background Colors */
+.work { background-color: #ff8b64; }
+.play { background-color: #56c2e6; }
+.study { background-color: #ff5e7d; }
+.exercise { background-color: #4bcf82; }
+.social { background-color: #7335d2; }
+.self-care { background-color: #f1c75b; }
+
+/* Tablet - 2 columns for activities, profile takes 2 rows */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile - 1 column */
+@media (max-width: 768px) {
+    body {
+        padding: 80px 24px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .profile-card {
+        grid-row: span 1;
+    }
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+        padding: 30px;
+    }
+
+    .avatar {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 0;
+        margin-right: 20px;
+    }
+
+    .profile-name {
+        font-size: 24px;
+    }
+
+    .timeframe-selector {
+        display: flex;
+        justify-content: space-around;
+        padding: 24px 30px;
+    }
+
+    .timeframe-btn {
+        text-align: center;
+    }
+
+    .activity-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 24px;
+    }
+
+    .activity-header {
+        margin-bottom: 0;
+    }
+
+    .activity-stats {
+        text-align: right;
+    }
+
+    .current-time {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    .previous-time {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 375px) {
+    .profile-name {
+        font-size: 22px;
+    }
+
+    .current-time {
+        font-size: 28px;
+    }
+}
